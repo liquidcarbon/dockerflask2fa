@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NHANES Prescription Drug Use ICD Principal Diagnosis">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/side_menu.css">
+        <title> page1 </title>
+
+    <style type="text/css">
+    </style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+        /* tweak Google Charts */
+        .gchart {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 12px 6px;
+        }
+        .gchart text{
+            font-family:'PT Sans', sans-serif !important;
+        }
+
+        .gchart g g text{
+            font-family:'PT Sans', sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+            <div class="pure-menu">
+                <span>
+                    <img src="#" class="pure-img-responsive" alt="" style="">
+                </span>
+                <a href="index.html"><p class="pure-menu-heading">NHANES Explorer</p></a>
+                <ul class="pure-menu-list">
+                  <li class="pure-menu-item"><a href="index.html" class="pure-menu-link ">Pain</a></li>
+                  <li class="pure-menu-item"><a href="asthma.html" class="pure-menu-link ">Asthma</a></li>
+                  <li class="pure-menu-item"><a href="diabetes.html" class="pure-menu-link pure-menu-selected">Diabetes</a></li>
+                  <li class="pure-menu-item"><a href="depression.html" class="pure-menu-link ">Depression</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>Diabetes medication prescribing patterns</h1>
+            </div>
+
+            <div class="content">
+            <script type="text/javascript">
+                // add sumtotals for nodes: http://jsfiddle.net/rhrpf0ju/
+
+                google.charts.load("current", {packages:["sankey"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'From');
+                    data.addColumn('string', 'To');
+                    data.addColumn('number', 'Weight');
+                    data.addRows(
+                                [
+           ['Type 2 diabetes mellitus', 'METFORMIN', 761],
+       ['Pure hypercholesterolemia', 'ATORVASTATIN', 672],
+       ['Pure hypercholesterolemia', 'SIMVASTATIN', 641],
+       ['Pure hypercholesterolemia', 'PRAVASTATIN', 281],
+       ['Pure hypercholesterolemia', 'ROSUVASTATIN', 226],
+       ['Type 2 diabetes mellitus', 'INSULIN GLARGINE', 186],
+       ['Type 2 diabetes mellitus', 'GLIPIZIDE', 183],
+       ['Pure hypercholesterolemia', 'LOVASTATIN', 124],
+       ['Type 2 diabetes mellitus', 'GLIMEPIRIDE', 100],
+       ['Type 2 diabetes mellitus', 'INSULIN ASPART', 94],
+       ['Pure hypercholesterolemia', 'FENOFIBRATE', 80],
+       ['Type 2 diabetes mellitus', 'SITAGLIPTIN', 79],
+       ['Type 2 diabetes mellitus', 'INSULIN DETEMIR', 70],
+       ['Pure hypercholesterolemia', 'EZETIMIBE', 54],
+       ['Type 2 diabetes mellitus', 'GLYBURIDE', 51],
+       ['Type 2 diabetes mellitus', 'INSULIN LISPRO', 50],
+       ['Type 2 diabetes mellitus', 'PIOGLITAZONE', 40],
+       ['Type 2 diabetes mellitus', 'INSULIN ISOPHANE; INSULIN REGULAR',
+        33],
+       ['Type 2 diabetes mellitus with neurological complications',
+        'GABAPENTIN', 32],
+       ['Type 2 diabetes mellitus', 'LIRAGLUTIDE', 30],
+       ['Type 2 diabetes mellitus', 'INSULIN ISOPHANE (NPH)', 29],
+       ['Pure hypercholesterolemia', 'GEMFIBROZIL', 28],
+       ['Type 2 diabetes mellitus', 'METFORMIN; SITAGLIPTIN', 26],
+       ['Type 2 diabetes mellitus with kidney complications',
+        'LISINOPRIL', 22],
+       ['Type 2 diabetes mellitus', 'INSULIN', 17],
+       ['Type 2 diabetes mellitus', 'INSULIN REGULAR', 17],
+       ['Pure hypercholesterolemia', 'NIACIN', 15],
+       ['Type 2 diabetes mellitus',
+        'INSULIN ASPART; INSULIN ASPART PROTAMINE', 15],
+       ['Prevent diabetes', 'METFORMIN', 15],
+       ['Type 2 diabetes mellitus', 'GLYBURIDE; METFORMIN', 14],
+       ['Pure hypercholesterolemia', 'EZETIMIBE; SIMVASTATIN', 14],
+       ['Type 2 diabetes mellitus', 'SAXAGLIPTIN', 14],
+       ['Prevent diabetic kidney disease', 'LISINOPRIL', 14],
+       ['Type 2 diabetes mellitus', 'METFORMIN', 13],
+       ['Type 2 diabetes mellitus', 'LINAGLIPTIN', 13],
+       ['Pure hypercholesterolemia', 'FENOFIBRIC ACID', 12],
+       ['Type 2 diabetes mellitus', 'CANAGLIFLOZIN', 11],
+       ['Type 2 diabetes mellitus', 'EXENATIDE', 11]
+       ]
+       
+                    );
+
+                // Set chart options
+                    var options = {
+                        //width: 600,
+                        sankey: {
+                            //iterations: 0, // draws nodes in the order given in DataTable
+                            link: {colorMode: 'gradient'},
+                            node: {
+                                label: {
+                                    fontSize: 14,
+                                    color: '#000',
+                                    bold: false,
+                                    italic: false
+                                },
+                                interactivity: true, // Allows you to select nodes.
+                                labelPadding: 6,     // Horizontal distance between the label and the node.
+                                nodePadding: 10,     // Vertical distance between nodes.
+                                width: 25,            // Thickness of the node.
+                            }
+                        },
+                    };
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.Sankey(document.getElementById('rx_sankey'));
+                chart.draw(data, options);
+                }
+            </script>
+            <div id="rx_sankey" class="gchart" style="width: 96%; height: 650px;"></div>
+
+            <p style="font-size:12px;">
+                Data: NHANES Questionnaire <a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Questionnaire">RXQ_RX</a>
+                <br>
+                Period: 2013&ndash;2016 (ICD-10-CM data appears for the first time in 2013; Rx data available for all years)
+                <br>
+                Number of respondents with non-blank ICD and drug fields: 7,931
+            </p>
+
+
+                <hr>
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <p>
+                            This site is built with <span style="color:red">&#9829;</span> using <a href="https://purecss.io/">PureCSS</a>
+                            and <a href="https://jinja.palletsprojects.com">Jinja</a><br>
+                        </p>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <p style="text-align:right;">
+                            &copy; 2020 <a href="http://aumics.org/">Aumics</a><br>
+                            last update: 2020-Feb-05 18:10 MST
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+            </div>
+        </div>
+    </div>
+
+    <!--responsive sidebar-hamburger menu-->
+    <script>
+        (function (window, document) {
+            var layout   = document.getElementById('layout'),
+                menu     = document.getElementById('menu'),
+                menuLink = document.getElementById('menuLink'),
+                content  = document.getElementById('main');
+            function toggleClass(element, className) {
+                var classes = element.className.split(/\s+/),
+                    length = classes.length,
+                    i = 0;
+                for(; i < length; i++) {
+                  if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                  }
+                }
+                // The className is not found
+                if (length === classes.length) {
+                    classes.push(className);
+                }
+                element.className = classes.join(' ');
+            }
+            function toggleAll(e) {
+                var active = 'active';
+                e.preventDefault();
+                toggleClass(layout, active);
+                toggleClass(menu, active);
+                toggleClass(menuLink, active);
+            }
+            menuLink.onclick = function (e) {
+                toggleAll(e);
+            };
+            content.onclick = function(e) {
+                if (menu.className.indexOf('active') !== -1) {
+                    toggleAll(e);
+                }
+            };
+        }(this, this.document));
+    </script>
+
+</body>
+</html>

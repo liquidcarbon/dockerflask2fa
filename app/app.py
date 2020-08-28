@@ -2,14 +2,14 @@ import os
 import base64
 from io import BytesIO
 from flask import Flask, render_template, redirect, url_for, flash, session, \
-    abort
+    abort, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, \
     current_user
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import BooleanField, StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo
 import onetimepass
 import pyqrcode
@@ -69,6 +69,7 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     password_again = PasswordField('Password again',
                                    validators=[DataRequired(), EqualTo('password')])
+    accept_tos = BooleanField('I promise to behave!', [DataRequired()])
     submit = SubmitField('Register')
 
 
@@ -84,6 +85,14 @@ class LoginForm(FlaskForm):
 def index():
     return render_template('index.html')
 
+@app.route('/<path:filename>')
+def private(filename):
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
+
+    filename = filename or 'index.html'
+    print(filename)
+    return send_from_directory('.', filename)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

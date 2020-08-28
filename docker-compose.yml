@@ -12,7 +12,3 @@ services:
       - ./data:/data
     command: >
       sh -c "python app.py"
-    env_file:
-      - .env.dev
-    environment:
-      - ABC=777

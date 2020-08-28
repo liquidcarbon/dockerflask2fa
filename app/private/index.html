@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NHANES Prescription Drug Use ICD Principal Diagnosis">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link  rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/side_menu.css">
+        <title> Pain Rx &ndash; NHANES </title>
+
+    <style type="text/css">
+    </style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+        /* tweak Google Charts */
+        .gchart {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 12px 6px;
+        }
+        .gchart text{
+            font-family:'PT Sans', sans-serif !important;
+        }
+
+        .gchart g g text{
+            font-family:'PT Sans', sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+
+              </ul>
+          </div>
+      </div>
+  </div>
+
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+            <div class="pure-menu">
+                <span>
+                    <img src="#" class="pure-img-responsive" alt="" style="">
+                </span>
+                <a href="index.html"><p class="pure-menu-heading">NHANES Explorer</p></a>
+                <ul class="pure-menu-list">
+                  <li class="pure-menu-item"><a href="index.html" class="pure-menu-link pure-menu-selected">Pain</a></li>
+                  <li class="pure-menu-item"><a href="asthma.html" class="pure-menu-link ">Asthma</a></li>
+                  <li class="pure-menu-item"><a href="diabetes.html" class="pure-menu-link ">Diabetes</a></li>
+                  <li class="pure-menu-item"><a href="depression.html" class="pure-menu-link ">Depression</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+            <div class="header">
+                <h1>Pain medication prescribing patterns</h1>
+            </div>
+
+            <div class="content">
+            <script type="text/javascript">
+                // add sumtotals for nodes: http://jsfiddle.net/rhrpf0ju/
+
+                google.charts.load("current", {packages:["sankey"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'From');
+                    data.addColumn('string', 'To');
+                    data.addColumn('number', 'Weight');
+                    data.addRows(
+                                [
+           ['Neuralgia and neuritis', 'GABAPENTIN', 153],
+       ['Dorsalgia', 'ACETAMINOPHEN; HYDROCODONE', 73],
+       ['Dorsalgia', 'TRAMADOL', 56],
+       ['Dorsalgia', 'IBUPROFEN', 53],
+       ['Migraine', 'TOPIRAMATE', 35],
+       ['Chest pain', 'NITROGLYCERIN', 34],
+       ['Dorsalgia', 'CYCLOBENZAPRINE', 34],
+       ['Migraine', 'SUMATRIPTAN', 33],
+       ['Dorsalgia', 'OXYCODONE', 30],
+       ['Dorsalgia', 'NAPROXEN', 29],
+       ['Dorsalgia', 'HYDROCODONE', 26],
+       ['Neuralgia and neuritis', 'PREGABALIN', 21],
+       ['Myalgia', 'CYCLOBENZAPRINE', 21],
+       ['Myalgia', 'NAPROXEN', 20],
+       ['Dorsalgia', 'ACETAMINOPHEN; OXYCODONE', 20],
+       ['Dorsalgia', 'MELOXICAM', 19],
+       ['Myalgia', 'IBUPROFEN', 19],
+       ['Myalgia', 'MELOXICAM', 17],
+       ['Fibromyalgia', 'GABAPENTIN', 16],
+       ['Dorsalgia', 'MORPHINE', 14],
+       ['Dorsalgia', 'GABAPENTIN', 14],
+       ['Myalgia', 'BACLOFEN', 12],
+       ['Myalgia', 'ACETAMINOPHEN; HYDROCODONE', 12],
+       ['Chest pain', 'ISOSORBIDE MONONITRATE', 12],
+       ['Migraine', 'PROPRANOLOL', 12],
+       ['Myalgia', 'TRAMADOL', 12],
+       ['Fibromyalgia', 'PREGABALIN', 12],
+       ['Headache', 'IBUPROFEN', 12],
+       ['Headache', 'ACETAMINOPHEN; BUTALBITAL; CAFFEINE', 11],
+       ['Dorsalgia', 'DICLOFENAC', 11],
+       ['Myalgia', 'TIZANIDINE', 11],
+       ['Migraine', 'ACETAMINOPHEN; BUTALBITAL; CAFFEINE', 11],
+       ['Dorsalgia', 'ACETAMINOPHEN; CODEINE', 10],
+       ['Migraine', 'RIZATRIPTAN', 10],
+       ['Chest pain', 'METOPROLOL', 10]
+       ]
+
+                    );
+
+                // Set chart options
+                    var options = {
+                        //width: 600,
+                        sankey: {
+                            //iterations: 0, // draws nodes in the order given in DataTable
+                            link: {colorMode: 'gradient'},
+                            node: {
+                                label: {
+                                    fontSize: 14,
+                                    color: '#000',
+                                    bold: false,
+                                    italic: false
+                                },
+                                interactivity: true, // Allows you to select nodes.
+                                labelPadding: 6,     // Horizontal distance between the label and the node.
+                                nodePadding: 10,     // Vertical distance between nodes.
+                                width: 25,            // Thickness of the node.
+                            }
+                        },
+                    };
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.Sankey(document.getElementById('rx_sankey'));
+                chart.draw(data, options);
+                }
+            </script>
+            <div id="rx_sankey" class="gchart" style="width: 96%; height: 650px;"></div>
+
+            <p style="font-size:12px;">
+                Data: NHANES Questionnaire <a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Questionnaire">RXQ_RX</a>
+                <br>
+                Period: 2013&ndash;2016 (ICD-10-CM data appears for the first time in 2013; Rx data available for all years)
+                <br>
+                Number of respondents with non-blank ICD and drug fields: 7,931
+            </p>
+
+
+                <hr>
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <p>
+                            This site is built with <span style="color:red">&#9829;</span> using <a href="https://purecss.io/">PureCSS</a>
+                            and <a href="https://jinja.palletsprojects.com">Jinja</a><br>
+                        </p>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <p style="text-align:right;">
+                            &copy; 2020 <a href="http://aumics.org/">Aumics</a><br>
+                            last update: 2020-Feb-05 18:10 MST
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+            </div>
+        </div>
+    </div>
+
+    <!--responsive sidebar-hamburger menu-->
+    <script>
+        (function (window, document) {
+            var layout   = document.getElementById('layout'),
+                menu     = document.getElementById('menu'),
+                menuLink = document.getElementById('menuLink'),
+                content  = document.getElementById('main');
+            function toggleClass(element, className) {
+                var classes = element.className.split(/\s+/),
+                    length = classes.length,
+                    i = 0;
+                for(; i < length; i++) {
+                  if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                  }
+                }
+                // The className is not found
+                if (length === classes.length) {
+                    classes.push(className);
+                }
+                element.className = classes.join(' ');
+            }
+            function toggleAll(e) {
+                var active = 'active';
+                e.preventDefault();
+                toggleClass(layout, active);
+                toggleClass(menu, active);
+                toggleClass(menuLink, active);
+            }
+            menuLink.onclick = function (e) {
+                toggleAll(e);
+            };
+            content.onclick = function(e) {
+                if (menu.className.indexOf('active') !== -1) {
+                    toggleAll(e);
+                }
+            };
+        }(this, this.document));
+    </script>
+</body>
+</html>
