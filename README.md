@@ -4,7 +4,7 @@ This repository is the result of my long search for a simple but versatile route
 
 ## Main Features
 
-- [Demo App](https://flask.albond.xyz) - a Flask app with two-factor auth and sample protected content
+- [Demo App](https://flask.albond.xyz) - a Flask app with two-factor auth and sample protected content, based on Miguel Grinberg's [blueprint](https://blog.miguelgrinberg.com/post/two-factor-authentication-with-flask)
 - The whole thing is in a Docker container, extensible to multi-container apps with Docker Compose
 - Direct [deployment to AWS Elastic Container Service using Docker tools](https://aws.amazon.com/about-aws/whats-new/2020/07/docker-and-aws-collaborate-to-help-deploy-applications-to-amazon-ecs-on-aws-fargate/)
 
@@ -28,7 +28,7 @@ Here are the main features:
 0. Set up [Docker Desktop](https://www.docker.com/products/docker-desktop) (choose Edge edition if you need AWS ECS integration)
 1. Clone: `git clone https://github.com/liquidcarbon/dockerflask2fa.git && cd dockerflask2fa`
 2. Build and start the application: `docker-compose up`
-3. Go to `http://localhost:5000` in your address bar to connect to the application.  Unless you crash the app, the changes you will make to the application will automagically appear in your browser (hot reloading). 
+3. Go to `http://localhost:5000` in your address bar to connect to the application.  Unless you crash the app, the changes you will make to the application will automagically appear in your browser (hot reloading).
 4. Make changes, [tag and push](https://docs.docker.com/engine/reference/commandline/push/) to a container registry.  In order to run your application in the cloud, you will need your container images to be in a registry.
 
 ## Deployment to AWS Fargate
