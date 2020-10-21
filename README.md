@@ -4,7 +4,7 @@ This repository is the result of my long search for a simple but versatile route
 
 ## Main Features
 
-- [Demo App](https://flask.albond.xyz) - a Flask app with two-factor auth and sample protected content, based on Miguel Grinberg's [blueprint](https://blog.miguelgrinberg.com/post/two-factor-authentication-with-flask)
+- [Demo App](https://flask.albond.xyz) - (disabled due to $$$) - a Flask app with two-factor auth and sample protected content, based on Miguel Grinberg's [blueprint](https://blog.miguelgrinberg.com/post/two-factor-authentication-with-flask)
 - The whole thing is in a Docker container, extensible to multi-container apps with Docker Compose
 - Direct [deployment to AWS Elastic Container Service using Docker tools](https://aws.amazon.com/about-aws/whats-new/2020/07/docker-and-aws-collaborate-to-help-deploy-applications-to-amazon-ecs-on-aws-fargate/)
 
