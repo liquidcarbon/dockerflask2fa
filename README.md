@@ -21,7 +21,7 @@ Here are the main features:
 
 
 
-*Note*: At the time of writing (September 2020), standard Docker Desktop did not have the `docker ecs` feature and [Docker Desktop Edge (2.3.3.0)](https://www.docker.com/blog/from-docker-straight-to-aws/) was required.
+*Note*: At the time of writing (September 2020), standard Docker Desktop did not have the `docker ecs` feature and [Docker Desktop Edge (2.3.3.0)](https://www.docker.com/blog/from-docker-straight-to-aws/) was required.  You can use regular edition now: https://docs.docker.com/engine/context/ecs-integration/
 
 ## Development in a local Docker container
 
@@ -32,6 +32,10 @@ Here are the main features:
 4. Make changes, [tag and push](https://docs.docker.com/engine/reference/commandline/push/) to a container registry.  In order to run your application in the cloud, you will need your container images to be in a registry.
 
 ## Deployment to AWS Fargate
+
+*Update Oct 21, 2020*: these instructions will no longer work because Docker disabled `docker ecs` feature in favor of `docker context`: https://docs.docker.com/engine/context/ecs-integration/ 
+
+*Costs*: about $1 / day (ELB + ECS)
 
 Follow the steps below or the instructions in [docker-ecs repo](https://github.com/docker/ecs-plugin/tree/master/example).
 
